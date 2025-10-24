@@ -1,8 +1,7 @@
 # Predicting-Vulnerability
 Its about my project
 
-'''
-bank-vuln-ml/
+''' bank-vuln-ml/
 ├─ src/
 │  ├─ data/
 │  │  └─ sample.csv
@@ -24,7 +23,6 @@ bank-vuln-ml/
 ├─ pyproject.toml
 ├─ Makefile
 ├─ .gitignore
-└─ README.md
-'''
+└─ README.md'''
 
 Thank You
