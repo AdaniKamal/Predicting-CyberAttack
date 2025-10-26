@@ -26,3 +26,6 @@ Its about my project
 └─ README.md'''
 
 Thank You
+
+![CI](https://github.com/AdaniKamal/Predicting-Vulnerability/actions/workflows/ci.yml/badge.svg)
+
