@@ -1,6 +1,10 @@
 pandas
-numpy
-scikit-learn
 pytest
 ruff
 black
+streamlit
+pandas
+numpy
+scikit-learn
+joblib
+matplotlib
