@@ -8,8 +8,8 @@ __pycache__/
 data/
 datasets/
 artifacts/
-models/
-*.pkl
+models/*
+!models/*.pkl
 *.joblib
 
 # Notebooks
