@@ -14,3 +14,7 @@ models/*
 
 # Notebooks
 *.ipynb_checkpoints/
+
+data/processed/
+.DS_Store
+
