@@ -27,5 +27,5 @@ Its about my project
 
 Thank You
 
-![CI](https://github.com/AdaniKamal/Predicting-Vulnerability/actions/workflows/ci.yml/badge.svg)
+
 
