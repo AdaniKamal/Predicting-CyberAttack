@@ -4,15 +4,15 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-BASE_DIR = "/Users/adanikamal/Documents/FYP_Project"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 
-RF_PATH = os.path.join(MODELS_DIR, "rf_model.pkl")
-ENC_PATH = os.path.join(MODELS_DIR, "encoders.pkl")
-FEAT_PATH = os.path.join(MODELS_DIR, "feature_columns.pkl")
+RF_PATH = os.path.join(BASE_DIR, "models", "rf_attack_prediction_model.pkl")
+ENCODER_PATH = os.path.join(BASE_DIR, "models", "rf_encoders.pkl")
+FEATURE_COLS_PATH = os.path.join(BASE_DIR, "models", "rf_feature_columns.pkl")
 
 st.set_page_config(page_title="InStreamLight Prototype", layout="wide")
-st.title("InStreamLight — Top-5 Cyberattack Prediction (Random Forest)")
+st.title("Predict_Attack — Top-5 Cyberattack Prediction (Random Forest)")
 
 st.caption("Upload a vulnerability list (CSV). The model outputs Top-5 predicted cyberattacks with probabilities.")
 
