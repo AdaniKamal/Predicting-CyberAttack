@@ -7,20 +7,30 @@ import streamlit as st
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 
-RF_PATH = os.path.join(BASE_DIR, "models", "rf_attack_prediction_model.pkl")
-ENCODER_PATH = os.path.join(BASE_DIR, "models", "rf_encoders.pkl")
-FEATURE_COLS_PATH = os.path.join(BASE_DIR, "models", "rf_feature_columns.pkl")
+RF_PATH = os.path.join(MODELS_DIR, "rf_attack_prediction_model.pkl")
+ENCODER_PATH = os.path.join(MODELS_DIR, "rf_encoders.pkl")
+FEATURE_COLS_PATH = os.path.join(MODELS_DIR, "rf_feature_columns.pkl")
 
-st.set_page_config(page_title="InStreamLight Prototype", layout="wide")
+st.set_page_config(page_title="Predict_Attack", layout="wide")
 st.title("Predict_Attack — Top-5 Cyberattack Prediction (Random Forest)")
-
 st.caption("Upload a vulnerability list (CSV). The model outputs Top-5 predicted cyberattacks with probabilities.")
+
+# ---- DEBUG (temporary) ----
+with st.expander("Debug: server file check"):
+    st.write("BASE_DIR:", BASE_DIR)
+    st.write("MODELS_DIR exists:", os.path.exists(MODELS_DIR))
+    if os.path.exists(MODELS_DIR):
+        st.write("Files in models/:", os.listdir(MODELS_DIR))
+    st.write("RF_PATH exists:", os.path.exists(RF_PATH))
+    st.write("ENCODER_PATH exists:", os.path.exists(ENCODER_PATH))
+    st.write("FEATURE_COLS_PATH exists:", os.path.exists(FEATURE_COLS_PATH))
+# ---------------------------
 
 @st.cache_resource
 def load_assets():
     rf = joblib.load(RF_PATH)
-    encoders = joblib.load(ENC_PATH)              # dict of LabelEncoders
-    feature_cols = joblib.load(FEAT_PATH)         # list of feature column names
+    encoders = joblib.load(ENCODER_PATH)
+    feature_cols = joblib.load(FEATURE_COLS_PATH)
     return rf, encoders, feature_cols
 
 rf, encoders, feature_cols = load_assets()
