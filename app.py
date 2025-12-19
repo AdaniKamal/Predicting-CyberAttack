@@ -16,7 +16,7 @@ st.title("Predict_Attack — Top-5 Cyberattack Prediction (Random Forest)")
 st.caption("Upload a vulnerability list (CSV). The model outputs Top-5 predicted cyberattacks with probabilities.")
 
 # ---- Advanced / Analyst Tools ----
-with st.expander("⚙️ Advanced diagnostics (analyst only)"):
+with st.expander("⚙️ Advanced diagnostics"):
     st.write("BASE_DIR:", BASE_DIR)
     st.write("MODELS_DIR exists:", os.path.exists(MODELS_DIR))
     if os.path.exists(MODELS_DIR):
