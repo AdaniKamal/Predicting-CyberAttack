@@ -15,8 +15,8 @@ st.set_page_config(page_title="Predict_Attack", layout="wide")
 st.title("Predict_Attack — Top-5 Cyberattack Prediction (Random Forest)")
 st.caption("Upload a vulnerability list (CSV). The model outputs Top-5 predicted cyberattacks with probabilities.")
 
-# ---- DEBUG (temporary) ----
-with st.expander("Debug: server file check"):
+# ---- Advanced / Analyst Tools ----
+with st.expander("⚙️ Advanced diagnostics (analyst only)"):
     st.write("BASE_DIR:", BASE_DIR)
     st.write("MODELS_DIR exists:", os.path.exists(MODELS_DIR))
     if os.path.exists(MODELS_DIR):
@@ -24,7 +24,7 @@ with st.expander("Debug: server file check"):
     st.write("RF_PATH exists:", os.path.exists(RF_PATH))
     st.write("ENCODER_PATH exists:", os.path.exists(ENCODER_PATH))
     st.write("FEATURE_COLS_PATH exists:", os.path.exists(FEATURE_COLS_PATH))
-# ---------------------------
+# ----------------------------------
 
 @st.cache_resource
 def load_assets():
