@@ -19,9 +19,7 @@ st.caption("Upload a Vulnerability Asssessment Result (CSV). The model outputs T
 st.sidebar.header("Settings")
 show_diag = st.sidebar.toggle("🛠 Diagnostics", value=False)
 
-# Optional: Keep sidebar collapsed feel by putting minimal items here
-# -------------------------------
-
+# Keep sidebar collapsed feel by putting minimal items here
 def diagnostics_panel():
    with st.expander("⚙️ Diagnostics"):
     st.write("BASE_DIR:", BASE_DIR)
@@ -101,13 +99,36 @@ template_df = pd.DataFrame({
     "bank_relevance": ["HIGH", "MEDIUM", "LOW"]
 })
 
-with st.expander("Download CSV template (recommended for prototype v1)"):
+# -------------------------GUIDE-----------------------------
+with st.expander("📘 How to use Predict_Attack (Input Guide)"):
     st.download_button(
-        "Download template.csv",
+        "Download example.csv",
         data=template_df.to_csv(index=False).encode("utf-8"),
         file_name="instreamlight_template.csv",
         mime="text/csv"
     )
+   st.markdown("""
+### Required columns (case-insensitive)
+
+Your CSV must include these **5 columns**:
+
+- **cvss_score**: numeric (0.0 – 10.0)
+- **severity**: LOW / MEDIUM / HIGH / CRITICAL
+- **family**: vulnerability family or technology domain (e.g., Web Servers, Databases, General)
+- **verified_flag**: 1 = exploit available/verified, 0 = no known exploit
+- **bank_relevance**: LOW / MEDIUM / HIGH
+
+### Notes
+- Extra columns are **ignored**.
+- Missing values:
+  - `cvss_score` will default to **5.0**
+  - `verified_flag` will default to **0**
+- For categorical fields (severity/family/bank_relevance), unseen values are mapped to **UNKNOWN**.
+
+### How prediction works
+Predict_Attack calculates probabilities for each row and then **aggregates (mean)** across all uploaded vulnerabilities to produce the **Top-5 predicted cyberattack types**.
+""")
+
     st.dataframe(template_df, use_container_width=True)
 
 uploaded = st.file_uploader("Upload your vulnerability list (CSV)", type=["csv"])
