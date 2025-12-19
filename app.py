@@ -99,15 +99,16 @@ template_df = pd.DataFrame({
     "bank_relevance": ["HIGH", "MEDIUM", "LOW"]
 })
 
-# -------------------------GUIDE-----------------------------
+# ------------------------- GUIDE -----------------------------
 with st.expander("📘 How to use Predict_Attack (Input Guide)"):
     st.download_button(
         "Download example.csv",
         data=template_df.to_csv(index=False).encode("utf-8"),
-        file_name="instreamlight_template.csv",
+        file_name="predict_attack_example.csv",
         mime="text/csv"
     )
-   st.markdown("""
+
+    st.markdown("""
 ### Required columns (case-insensitive)
 
 Your CSV must include these **5 columns**:
@@ -123,13 +124,14 @@ Your CSV must include these **5 columns**:
 - Missing values:
   - `cvss_score` will default to **5.0**
   - `verified_flag` will default to **0**
-- For categorical fields (severity/family/bank_relevance), unseen values are mapped to **UNKNOWN**.
+- For categorical fields (severity / family / bank_relevance), unseen values are mapped to **UNKNOWN**.
 
 ### How prediction works
 Predict_Attack calculates probabilities for each row and then **aggregates (mean)** across all uploaded vulnerabilities to produce the **Top-5 predicted cyberattack types**.
 """)
 
     st.dataframe(template_df, use_container_width=True)
+# ----------------------------------
 
 uploaded = st.file_uploader("Upload your vulnerability list (CSV)", type=["csv"])
 
