@@ -12,11 +12,18 @@ ENCODER_PATH = os.path.join(MODELS_DIR, "rf_encoders.pkl")
 FEATURE_COLS_PATH = os.path.join(MODELS_DIR, "rf_feature_columns.pkl")
 
 st.set_page_config(page_title="Predict_Attack", layout="wide")
-st.title("Predict_Attack — Top-5 Cyberattack Prediction (Random Forest)")
-st.caption("Upload a vulnerability list (CSV). The model outputs Top-5 predicted cyberattacks with probabilities.")
+st.title("Predict Attack — Top-5 Cyberattack Prediction (Random Forest)")
+st.caption("Upload a Vulnerability Asssessment Result (CSV). The model outputs Top-5 predicted cyberattacks with probabilities.")
 
-# ---- Advanced / Analyst Tools ----
-with st.expander("⚙️ Advanced diagnostics"):
+# ---------- UI Controls ----------
+st.sidebar.header("Settings")
+show_diag = st.sidebar.toggle("🛠 Diagnostics", value=False)
+
+# Optional: Keep sidebar collapsed feel by putting minimal items here
+# -------------------------------
+
+def diagnostics_panel():
+    st.subheader("Diagnostics (Analyst Only)")
     st.write("BASE_DIR:", BASE_DIR)
     st.write("MODELS_DIR exists:", os.path.exists(MODELS_DIR))
     if os.path.exists(MODELS_DIR):
@@ -24,6 +31,9 @@ with st.expander("⚙️ Advanced diagnostics"):
     st.write("RF_PATH exists:", os.path.exists(RF_PATH))
     st.write("ENCODER_PATH exists:", os.path.exists(ENCODER_PATH))
     st.write("FEATURE_COLS_PATH exists:", os.path.exists(FEATURE_COLS_PATH))
+
+if show_diag:
+    diagnostics_panel()
 # ----------------------------------
 
 @st.cache_resource
