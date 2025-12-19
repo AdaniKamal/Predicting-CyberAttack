@@ -101,13 +101,6 @@ template_df = pd.DataFrame({
 
 # ------------------------- GUIDE -----------------------------
 with st.expander("📘 How to use Predict_Attack (Input Guide)"):
-    st.download_button(
-        "Download example.csv",
-        data=template_df.to_csv(index=False).encode("utf-8"),
-        file_name="predict_attack_example.csv",
-        mime="text/csv"
-    )
-
     st.markdown("""
 ### Required columns (case-insensitive)
 
@@ -129,7 +122,12 @@ Your CSV must include these **5 columns**:
 ### How prediction works
 Predict_Attack calculates probabilities for each row and then **aggregates (mean)** across all uploaded vulnerabilities to produce the **Top-5 predicted cyberattack types**.
 """)
-
+    st.download_button(
+        "Download example.csv",
+        data=template_df.to_csv(index=False).encode("utf-8"),
+        file_name="predict_attack_example.csv",
+        mime="text/csv"
+    )
     st.dataframe(template_df, use_container_width=True)
 # ----------------------------------
 
