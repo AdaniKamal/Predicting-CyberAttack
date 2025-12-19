@@ -23,7 +23,7 @@ show_diag = st.sidebar.toggle("🛠 Diagnostics", value=False)
 # -------------------------------
 
 def diagnostics_panel():
-   with st.expander("⚙️ Advanced diagnostics"):
+   with st.expander("⚙️ Diagnostics"):
     st.write("BASE_DIR:", BASE_DIR)
     st.write("MODELS_DIR exists:", os.path.exists(MODELS_DIR))
     if os.path.exists(MODELS_DIR):
