@@ -28,6 +28,7 @@ Its about my project
 ### UPDATE
 App.py --> Will always use this name for Streamlit (Latest files)
 |File|Dates|Description|
+|----|-----|-----------|
 |AppV1.py|19/12/2025|Ori file|
 |App.py|20/12/2025|Update debug part|
 
