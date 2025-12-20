@@ -131,25 +131,56 @@ Predict_Attack calculates probabilities for each row and then **aggregates (mean
     st.dataframe(template_df, use_container_width=True)
 # ----------------------------------
 
+# ------------------------- Helper function - Smarter Upload Validation -----------------------------
+def validate_input_df(df: pd.DataFrame):
+    df2 = df.copy()
+    df2.columns = [c.strip().lower() for c in df2.columns]
+
+    missing = [c for c in REQUIRED_COLS if c not in df2.columns]
+    extra = [c for c in df2.columns if c not in REQUIRED_COLS]
+
+    return df2, missing, extra
+
+# ----------------------------------
+
+# ------------------------- Upload - Smarter Upload Validation -----------------------------
 uploaded = st.file_uploader("Upload your vulnerability list (CSV)", type=["csv"])
 
+ready = False
+df_norm = None
+
 if uploaded:
-    df_in = pd.read_csv(uploaded)
+    df_raw = pd.read_csv(uploaded)
+
     st.subheader("Uploaded data preview")
-    st.dataframe(df_in.head(20), use_container_width=True)
+    st.dataframe(df_raw.head(20), use_container_width=True)
 
-    if st.button("Predict Top-5 Cyberattacks"):
+    df_norm, missing_cols, extra_cols = validate_input_df(df_raw)
+
+    st.subheader("Input validation")
+
+    if missing_cols:
+        st.error(f"Missing required columns: {missing_cols}")
+        st.info("Tip: Download the example CSV in the Input Guide and follow the same column names.")
+        ready = False
+    else:
+        st.success("✅ Input format looks good. Ready to predict.")
+        ready = True
+
+    if extra_cols:
+        st.warning(f"Extra columns will be ignored: {extra_cols[:12]}" + (" ..." if len(extra_cols) > 12 else ""))
+
+    predict_clicked = st.button("Predict Top-5 Cyberattacks", disabled=not ready)
+
+    if predict_clicked:
         try:
-            X_user = build_features(df_in)
+            X_user = build_features(df_norm)
 
-            # RF probabilities per row, then aggregate (mean) across the uploaded list
             proba = rf.predict_proba(X_user)
             mean_proba = proba.mean(axis=0)
 
-            # rf.classes_ are encoded class ids (integers)
             class_ids = rf.classes_
 
-            # decode class ids -> attack labels using attack_type encoder
             attack_le = encoders["attack_type"]
             decoded_labels = attack_le.inverse_transform(class_ids)
 
@@ -164,12 +195,15 @@ if uploaded:
 
             with c2:
                 st.subheader("Summary")
-                st.metric("Rows analysed", len(df_in))
+                st.metric("Rows analysed", len(df_norm))
                 st.metric("Top prediction", top5_df.iloc[0]["Attack Type"])
 
             st.subheader("Probability chart (Top-5)")
             st.bar_chart(top5_df.set_index("Attack Type")["Probability"])
 
+        except KeyError:
+            st.error("Model encoder key mismatch. (attack_type encoder not found). Tell the developer to align encoder keys.")
         except Exception as e:
             st.error(str(e))
-            st.info("Tip: Use the template format first to confirm the pipeline works end-to-end.")
+            st.info("Tip: Use the example CSV first to confirm the pipeline works end-to-end.")
+   # ----------------------------------
