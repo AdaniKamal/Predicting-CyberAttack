@@ -68,7 +68,16 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
 
     # Ensure correct types
     df["cvss_score"] = pd.to_numeric(df["cvss_score"], errors="coerce").fillna(5.0)
-    df["verified_flag"] = pd.to_numeric(df["verified_flag"], errors="coerce").fillna(0).astype(int)
+
+    # verified_flag: support 1/0, True/False, Yes/No (case-insensitive)
+    df["verified_flag"] = (
+        df["verified_flag"]
+        .astype(str)
+        .str.strip()
+        .str.lower()
+        .isin(["1", "true", "yes", "y"])
+        .astype(int)
+     )
 
     # Encode categorical columns exactly as training
     df["severity"] = safe_label_transform(encoders["severity"], df["severity"])
