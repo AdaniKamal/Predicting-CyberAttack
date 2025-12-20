@@ -32,7 +32,8 @@ App.py --> Will always use this name for Streamlit (Latest files)
 |app_v1.py|19/12/2025|Ori file|
 |app_v2.py|20/12/2025|Update debug part|
 |app_v3.py|20/12/2025|Update rm expander block|
-|app.py|20/12/2025|Update Guide|
+|app_v4.py|20/12/2025|Update Guide|
+|app.py|20/12/2025|Update - Smarter Upload Validation|
 
 Thank You
 
