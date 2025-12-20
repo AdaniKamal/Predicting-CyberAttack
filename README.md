@@ -1,29 +1,5 @@
 # Predicting-Vulnerability
-Its about my project
-
-''' bank-vuln-ml/
-├─ src/
-│  ├─ data/
-│  │  └─ sample.csv
-│  ├─ features/
-│  │  └─ build_features.py
-│  ├─ models/
-│  │  ├─ train_rf.py
-│  │  ├─ train_nnr.py
-│  │  └─ predict.py
-│  ├─ pipelines/
-│  │  ├─ preprocess.py
-│  │  └─ evaluate.py
-│  └─ app/
-│     └─ streamlit_app.py
-├─ tests/
-├─ .github/
-│  └─ workflows/
-├─ requirements.txt
-├─ pyproject.toml
-├─ Makefile
-├─ .gitignore
-└─ README.md'''
+Its about my Master project. This Github mainly used for stored all the related files, versioning controls and prototype.
 
 ### UPDATE
 App.py --> Will always use this name for Streamlit (Latest files)
