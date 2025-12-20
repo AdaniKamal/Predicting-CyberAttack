@@ -137,7 +137,7 @@ Predict_Attack calculates probabilities for each row and then **aggregates (mean
     st.dataframe(template_df, use_container_width=True)
 # ----------------------------------
 
-# ------------------------- Helper function - Smarter Upload Validation -----------------------------
+# ------------------------- Helper function - Smarter Upload Validation --------------------
 def validate_input_df(df: pd.DataFrame):
     df2 = df.copy()
 
@@ -244,6 +244,15 @@ if uploaded:
             4. **Threat hunting**: search for IOCs and suspicious activity aligned to the Top-5 attack patterns.
             5. **Retest**: rerun VA after remediation and compare Top-5 shifts over time.
             """)
+            # -------------------------
+
+            # ------------------------- Download -------------------
+            st.download_button(
+               "Download Top-5 results (CSV)",
+               data=top5_df_display.to_csv(index=False).encode("utf-8"),
+               file_name="predict_attack_top5_results.csv",
+               mime="text/csv"
+            )
             # -------------------------
 
         except KeyError:
