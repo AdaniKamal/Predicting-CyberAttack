@@ -100,7 +100,7 @@ template_df = pd.DataFrame({
 })
 
 # ------------------------- GUIDE -----------------------------
-with st.expander("📘 How to use Predict_Attack (Input Guide)"):
+with st.expander("📘 How to use Predict Attack (Guide)"):
     st.markdown("""
 ### Required columns (case-insensitive)
 
