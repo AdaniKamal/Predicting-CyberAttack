@@ -12,8 +12,8 @@ ENCODER_PATH = os.path.join(MODELS_DIR, "rf_encoders.pkl")
 FEATURE_COLS_PATH = os.path.join(MODELS_DIR, "rf_feature_columns.pkl")
 
 st.set_page_config(page_title="Predict_Attack", layout="wide")
-st.title("Top 5 Cyberattack Prediction")
-st.caption("Upload a Vulnerability Asssessment Result (CSV). The model outputs Top-5 predicted cyberattacks with probabilities.")
+st.title("Predict Cyber Attack")
+st.caption("Upload a Vulnerability Assessment (VA) CSV export. The system predicts the Top-5 most probable cyberattack types based on detected vulnerabilities.")
 
 # ---------- UI Controls ----------
 st.sidebar.header("Settings")
@@ -164,6 +164,11 @@ def validate_input_df(df: pd.DataFrame):
 
 # ----------------------------------
 
+st.info(
+    "Start here: Download the example CSV in the Guide section if you're unsure about the required columns. "
+    "Then upload your VA CSV and click Predict."
+)
+
 # ------------------------- Upload - Smarter Upload Validation -----------------------------
 uploaded = st.file_uploader("Upload your vulnerability list (CSV)", type=["csv"])
 
@@ -260,4 +265,7 @@ if uploaded:
         except Exception as e:
             st.error(str(e))
             st.info("Tip: Use the example CSV first to confirm the pipeline works end-to-end.")
-   # ----------------------------------
+           # ----------------------------------
+
+            st.divider()
+            st.caption("Predict_Attack • Streamlit prototype • Random Forest model • For research and evaluation purposes.")
