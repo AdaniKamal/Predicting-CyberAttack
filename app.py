@@ -43,7 +43,7 @@ def load_assets():
 
 rf, encoders, feature_cols = load_assets()
 
-REQUIRED_COLS = ["cvss_score", "severity", "family", "verified_flag", "bank_relevance"]
+REQUIRED_COLS = ["cvss_score", "severity", "family", "verified_flag"] #Required columns
 
 def safe_label_transform(le, series: pd.Series) -> np.ndarray:
     """Transform with LabelEncoder; unknown categories -> 'UNKNOWN'."""
@@ -73,9 +73,8 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     # Encode categorical columns exactly as training
     df["severity"] = safe_label_transform(encoders["severity"], df["severity"])
     df["family"] = safe_label_transform(encoders["family"], df["family"])
-    df["bank_relevance"] = safe_label_transform(encoders["bank_relevance"], df["bank_relevance"])
-
-    X_user = df[["cvss_score", "severity", "family", "verified_flag", "bank_relevance"]].copy()
+   
+    X_user = df[["cvss_score", "severity", "family", "verified_flag"]].copy()
 
     # Enforce feature column order used in training
     # (feature_cols should match the 5 above; but we enforce anyway)
@@ -95,8 +94,7 @@ template_df = pd.DataFrame({
     "cvss_score": [9.8, 7.5, 5.3],
     "severity": ["CRITICAL", "HIGH", "MEDIUM"],
     "family": ["Web Servers", "Databases", "General"],
-    "verified_flag": [1, 0, 0],
-    "bank_relevance": ["HIGH", "MEDIUM", "LOW"]
+    "verified_flag": [1, 0, 0]
 })
 
 # ------------------------- GUIDE -----------------------------
@@ -110,14 +108,13 @@ Your CSV must include these **5 columns**:
 - `severity`: LOW / MEDIUM / HIGH / CRITICAL
 - `family`: vulnerability family or technology domain (e.g., Web Servers, Databases, General)
 - `verified_flag`: 1 = exploit available/verified, 0 = no known exploit
-- `bank_relevance`: LOW / MEDIUM / HIGH
 
 ### Notes
 - Extra columns are **ignored**.
 - Missing values:
   - `cvss_score` will default to **5.0**
   - `verified_flag` will default to **0**
-- For categorical fields (severity / family / bank_relevance), unseen values are mapped to **UNKNOWN**.
+- For categorical fields (severity / family), unseen values are mapped to **UNKNOWN**.
 
 ### How prediction works
 Predict_Attack calculates probabilities for each row and then **aggregates (mean)** across all uploaded vulnerabilities to produce the **Top-5 predicted cyberattack types**.
@@ -134,7 +131,22 @@ Predict_Attack calculates probabilities for each row and then **aggregates (mean
 # ------------------------- Helper function - Smarter Upload Validation -----------------------------
 def validate_input_df(df: pd.DataFrame):
     df2 = df.copy()
+
+    # Normalize column names (case-insensitive)
     df2.columns = [c.strip().lower() for c in df2.columns]
+
+    # Column alias mapping
+    alias_map = {
+        "cvss": "cvss_score",
+        "cvssbase": "cvss_score",
+        "exploit": "verified_flag",
+        "exploit_available": "verified_flag",
+        "exploitability": "verified_flag"
+    }
+
+    for alias, canonical in alias_map.items():
+        if alias in df2.columns and canonical not in df2.columns:
+            df2[canonical] = df2[alias]
 
     missing = [c for c in REQUIRED_COLS if c not in df2.columns]
     extra = [c for c in df2.columns if c not in REQUIRED_COLS]
