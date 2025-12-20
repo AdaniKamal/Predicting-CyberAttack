@@ -208,6 +208,13 @@ if uploaded:
             top5 = top_k_from_proba(mean_proba, decoded_labels, k=5)
             top5_df = pd.DataFrame(top5, columns=["Attack Type", "Probability"])
 
+            # Format probability nicely for display
+            top5_df["Probability (%)"] = (top5_df["Probability"] * 100).round(2)
+            top5_df_display = top5_df[["Attack Type", "Probability (%)"]].copy()
+
+            top_attack = top5_df_display.iloc[0]["Attack Type"]
+            top_prob = top5_df_display.iloc[0]["Probability (%)"]
+
             c1, c2 = st.columns([2, 1])
 
             with c1:
