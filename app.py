@@ -22,13 +22,13 @@ show_diag = st.sidebar.toggle("🛠 Diagnostics", value=False)
 # Keep sidebar collapsed feel by putting minimal items here
 def diagnostics_panel():
     with st.expander("⚙️ Diagnostics"):
-    st.write("BASE_DIR:", BASE_DIR)
-    st.write("MODELS_DIR exists:", os.path.exists(MODELS_DIR))
-    if os.path.exists(MODELS_DIR):
-        st.write("Files in models/:", os.listdir(MODELS_DIR))
-    st.write("RF_PATH exists:", os.path.exists(RF_PATH))
-    st.write("ENCODER_PATH exists:", os.path.exists(ENCODER_PATH))
-    st.write("FEATURE_COLS_PATH exists:", os.path.exists(FEATURE_COLS_PATH))
+        st.write("BASE_DIR:", BASE_DIR)
+        st.write("MODELS_DIR exists:", os.path.exists(MODELS_DIR))
+        if os.path.exists(MODELS_DIR):
+            st.write("Files in models/:", os.listdir(MODELS_DIR))
+        st.write("RF_PATH exists:", os.path.exists(RF_PATH))
+        st.write("ENCODER_PATH exists:", os.path.exists(ENCODER_PATH))
+        st.write("FEATURE_COLS_PATH exists:", os.path.exists(FEATURE_COLS_PATH))
 
 if show_diag:
     diagnostics_panel()
