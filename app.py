@@ -219,7 +219,7 @@ if uploaded:
 
             with c1:
                 st.subheader("Top-5 Predicted Cyberattacks")
-                st.dataframe(top5_df, use_container_width=True)
+                st.dataframe(top5_df_display, use_container_width=True)
 
             with c2:
                 st.subheader("Summary")
@@ -228,6 +228,23 @@ if uploaded:
 
             st.subheader("Probability chart (Top-5)")
             st.bar_chart(top5_df.set_index("Attack Type")["Probability"])
+
+            # ------------------------- Interpretation -----------------------------
+            st.subheader("Interpretation")
+            st.write(
+                f"The model indicates the most probable attack pattern is **{top_attack}** "
+                f"with an aggregated confidence of **{top_prob}%** based on the uploaded vulnerability list."
+            )
+
+            st.subheader("Recommended next steps (bank workflow)")
+            st.markdown("""
+            1. **Validate exposure**: confirm affected assets are internet-facing or reachable from high-risk network segments.
+            2. **Prioritize patching**: start with vulnerabilities that have **exploit availability** and higher CVSS.
+            3. **Compensating controls**: apply WAF rules / IPS signatures / segmentation where patching is delayed.
+            4. **Threat hunting**: search for IOCs and suspicious activity aligned to the Top-5 attack patterns.
+            5. **Retest**: rerun VA after remediation and compare Top-5 shifts over time.
+            """)
+            # -------------------------
 
         except KeyError:
             st.error("Model encoder key mismatch. (attack_type encoder not found). Tell the developer to align encoder keys.")
