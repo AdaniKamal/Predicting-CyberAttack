@@ -266,16 +266,3 @@ if uploaded:
             st.error(str(e))
             st.info("Tip: Use the example CSV first to confirm the pipeline works end-to-end.")
            # ----------------------------------
-
-            st.markdown(
-                """
-                <hr style="margin-top: 2rem; margin-bottom: 0.5rem;">
-                <p style="text-align: center; font-size: 0.85rem; color: grey;">
-                Predict_Attack | Top-5 Cyberattack Prediction Prototype<br>
-                Random Forest • Vulnerability Assessment Analytics • Academic Use Only
-                </p>
-                """,
-                unsafe_allow_html=True
-            )
-
-
