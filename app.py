@@ -268,4 +268,9 @@ if uploaded:
            # ----------------------------------
 
             st.divider()
-            st.caption("Predict_Attack • Streamlit prototype • Random Forest model • For research and evaluation purposes.")
+
+            st.caption(
+                "Predict_Attack • Research Prototype • Random Forest Model • "
+                "For academic evaluation only (Master’s FYP)"
+            )
+
