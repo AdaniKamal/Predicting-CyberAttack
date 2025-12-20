@@ -106,11 +106,11 @@ with st.expander("📘 How to use Predict_Attack (Input Guide)"):
 
 Your CSV must include these **5 columns**:
 
-- **cvss_score**: numeric (0.0 – 10.0)
-- **severity**: LOW / MEDIUM / HIGH / CRITICAL
-- **family**: vulnerability family or technology domain (e.g., Web Servers, Databases, General)
-- **verified_flag**: 1 = exploit available/verified, 0 = no known exploit
-- **bank_relevance**: LOW / MEDIUM / HIGH
+- `cvss_score`: numeric (0.0 – 10.0)
+- `severity`: LOW / MEDIUM / HIGH / CRITICAL
+- `family`: vulnerability family or technology domain (e.g., Web Servers, Databases, General)
+- `verified_flag`: 1 = exploit available/verified, 0 = no known exploit
+- `bank_relevance`: LOW / MEDIUM / HIGH
 
 ### Notes
 - Extra columns are **ignored**.
