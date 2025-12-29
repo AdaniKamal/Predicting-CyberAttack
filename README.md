@@ -10,7 +10,6 @@ Contains raw and processed vulnerability assessment datasets from Kaggle, NVD, E
 Random Forest vs Neural Network Classification
 
 ## Project Structure
-## Project Structure
 
 ```text
 📦 Predicting-Vulnerability-Susceptibility
