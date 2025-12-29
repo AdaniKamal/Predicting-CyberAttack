@@ -10,12 +10,15 @@ Contains raw and processed vulnerability assessment datasets from Kaggle, NVD, E
 Random Forest vs Neural Network Classification
 
 ## Project Structure
+## Project Structure
+
+```text
 📦 Predicting-Vulnerability-Susceptibility
 ├── 📁 data
-│   ├── raw/
+│   ├── raw
 │   │   ├── kaggle_vulnerability_data.csv
 │   │   └── tenable_plugins.csv
-│   ├── processed/
+│   └── processed
 │       ├── cleaned_vulnerability_data.csv
 │       └── merged_vulnerability_data.csv
 │
@@ -30,16 +33,16 @@ Random Forest vs Neural Network Classification
 │   └── neural_network_model.h5
 │
 ├── 📁 streamlit_app
-│   ├── app.py
-│   └── requirements.txt
+│   └── app.py
 │
 ├── 📁 docs
 │   ├── proposal.pdf
 │   ├── week2_update.pdf
 │   └── week3_update.pdf
 │
-├── README.md
-└── requirements.txt
+├── requirements.txt
+└── README.md
+```
 
 ## How to Run
 [(OPEN)](https://predict-attack.streamlit.app/)
