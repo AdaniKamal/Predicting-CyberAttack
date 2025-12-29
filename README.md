@@ -1,5 +1,49 @@
 # Predicting-Vulnerability
+
+## Overview
 Its about my Master project. This Github mainly used for stored all the related files, versioning controls and prototype.
+
+## Dataset
+Contains raw and processed vulnerability assessment datasets from Kaggle, NVD, Exploit-DB, Tenable
+
+## Methodology
+Random Forest vs Neural Network Classification
+
+## Project Structure
+📦 Predicting-Vulnerability-Susceptibility
+├── 📁 data
+│   ├── raw/
+│   │   ├── kaggle_vulnerability_data.csv
+│   │   └── tenable_plugins.csv
+│   ├── processed/
+│       ├── cleaned_vulnerability_data.csv
+│       └── merged_vulnerability_data.csv
+│
+├── 📁 notebooks
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_data_cleaning.ipynb
+│   ├── 03_model_training.ipynb
+│   └── 04_model_evaluation.ipynb
+│
+├── 📁 models
+│   ├── random_forest_model.pkl
+│   └── neural_network_model.h5
+│
+├── 📁 streamlit_app
+│   ├── app.py
+│   └── requirements.txt
+│
+├── 📁 docs
+│   ├── proposal.pdf
+│   ├── week2_update.pdf
+│   └── week3_update.pdf
+│
+├── README.md
+└── requirements.txt
+
+## How to Run
+[(OPEN)](https://predict-attack.streamlit.app/)
+
 
 ### UPDATE
 App.py --> Will always use this name for Streamlit (Latest files)
