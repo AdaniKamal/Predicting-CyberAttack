@@ -14,30 +14,47 @@ Random Forest vs Neural Network Classification
 ```text
 📦 Predicting-Vulnerability-Susceptibility
 ├── 📁 data
-│   ├── raw
-│   │   ├── kaggle_vulnerability_data.csv
-│   │   └── tenable_plugins.csv
+│   ├── ExploitDB
+│   │   └── exploitdb_with_cve_exploded.csv
+│   └── Kaggle
+│   │   └── kaggle.csv
+|   └── NVD
+│   │   └── cve_2025.csv
+│   └── Tenable
+│   │   └── tenable_2025.csv
 │   └── processed
-│       ├── cleaned_vulnerability_data.csv
-│       └── merged_vulnerability_data.csv
+│       ├── exploitdb_clean.csv
+│       ├── kaggle_clean.csv
+│       ├── nvd_clean.csv
+│       └── tenable_clean.csv
 │
-├── 📁 notebooks
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_data_cleaning.ipynb
-│   ├── 03_model_training.ipynb
-│   └── 04_model_evaluation.ipynb
+├── 📁 scripts
+│   ├── 01_data_overview.ipynb
+│   ├── ExploitDB.ipynb
+│   ├── ExploitDB_CVE_extractor.ipynb
+│   ├── Tenable_CVE_extractor.ipynb
+│   ├── cve.ipynb
+│   └── tenable.ipynb
 │
 ├── 📁 models
-│   ├── random_forest_model.pkl
-│   └── neural_network_model.h5
+│   ├── rf_attack_prediction_model.pkl
+│   ├── rf_encoders.pkl
+│   └── rf_feature_columns.pkl
 │
 ├── 📁 streamlit_app
-│   └── app.py
+│   ├── app.py
+│   ├── app_v1.py
+│   ├── app_v2.py
+│   ├── app_v3.py
+│   └── app_v4.py
 │
 ├── 📁 docs
-│   ├── proposal.pdf
-│   ├── week2_update.pdf
-│   └── week3_update.pdf
+│   ├── CSP760 - Week 2.pdf
+│   ├── CSP760 - Week 3.pdf
+│   ├── CSP760 - Week 4.pdf
+│   ├── CSP760 - Week 7.pdf
+│   ├── CSP760 - Week 8.pdf
+│   └── CSP760 - Week 10.pdf
 │
 ├── requirements.txt
 └── README.md
