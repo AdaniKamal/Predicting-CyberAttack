@@ -12,8 +12,8 @@ ENCODER_PATH = os.path.join(MODELS_DIR, "rf_encoders.pkl")
 FEATURE_COLS_PATH = os.path.join(MODELS_DIR, "rf_feature_columns.pkl")
 
 st.set_page_config(page_title="Predict_Attack", layout="wide")
-st.title("Predict Cyber Attack")
-st.caption("Upload a Vulnerability Assessment (VA) CSV export. The system predicts the Top-5 most probable cyberattack types based on detected vulnerabilities.")
+st.title("Predict Cyber Attack (Financial Instituition)")
+st.caption("Upload a Vulnerability Assessment (VA) CSV export. The system predicts the Top-5 most probable cyberattack types based on detected vulnerabilities. This application is make for Financial Instituition ONLY.")
 
 # ---------- UI Controls ----------
 st.sidebar.header("Settings")
