@@ -1,9 +1,9 @@
+streamlit>=1.30
+altair>=5,<7
 pandas
 pytest
 ruff
 black
-streamlit
-pandas
 numpy
 scikit-learn
 joblib
