@@ -1,5 +1,5 @@
 streamlit>=1.30
-altair>=5,<7
+altair>=6.1.0,<7
 pandas
 pytest
 ruff
